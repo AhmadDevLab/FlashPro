@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <!-- Text View for Brightness Adjustment -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adjust Brightness"
+        android:textSize="18sp"
+        android:layout_gravity="center"/>
+
+    <!-- Seekbar for Brightness -->
+    <SeekBar
+        android:id="@+id/seekBarBrightness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="50"/>
+
+    <!-- Text View for Color Picker -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Screen Color"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Color Picker (Buttons for simplicity) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btnColorRed"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#FF0000" />
+
+        <Button
+            android:id="@+id/btnColorGreen"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#00FF00"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btnColorBlue"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0000FF"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btnColorYellow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#FFFF00"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btnColorWhite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+</LinearLayout>

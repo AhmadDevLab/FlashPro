@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    tools:context=".Ui.ActivityStrobe">
+
+    <ToggleButton
+        android:id="@+id/toggleStrobe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Strobe ON"
+        android:textOff="Strobe OFF" />
+
+    <SeekBar
+        android:id="@+id/seekBarFrequency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toggleStrobe"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="50" />
+
+    <TextView
+        android:id="@+id/textViewFrequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekBarFrequency"
+        android:layout_marginTop="10dp"
+        android:text="Frequency: 50" />
+
+</RelativeLayout>

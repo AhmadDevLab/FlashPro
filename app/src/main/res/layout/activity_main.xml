@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Ui.ActivityHome">
+
+    <ToggleButton
+        android:id="@+id/toggleFlashlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Flash OFF"
+        android:textOff="Flash ON"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnStrobe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Strobe Mode"
+        android:layout_below="@id/toggleFlashlight"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="20dp"/>
+    <Button
+        android:id="@+id/btnSos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SOS Mode"
+        android:layout_below="@id/btnStrobe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="20dp"/>
+    <Button
+        android:id="@+id/btnScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Screen Mode"
+        android:layout_below="@id/btnSos"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="20dp"/>
+
+
+</RelativeLayout>
