@@ -12,8 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.devdroid.flashpro.alerter.R
+import com.devdroid.flashpro.alerter.databinding.ActivitySosBinding
 
 class ActivitySos : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySosBinding
 
     private lateinit var cameraManager: CameraManager
     private lateinit var cameraId: String
@@ -24,24 +27,24 @@ class ActivitySos : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sos)
+        binding = ActivitySosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val btnStartSos = findViewById<Button>(R.id.btnStartSos)
-        val seekBarSpeed = findViewById<SeekBar>(R.id.seekBarSpeed)
-        val txtSpeed = findViewById<TextView>(R.id.txtSpeed)
+        val btnStartSos = binding.btnStartSos
+        val seekBarSpeed = binding.seekBarSpeed
+        val txtSpeed = binding.txtSpeed
 
         cameraManager = getSystemService(CAMERA_SERVICE) as CameraManager
         try {
-            cameraId = cameraManager.cameraIdList[0] // Get the first camera (usually rear camera)
+            cameraId = cameraManager.cameraIdList[0]
         } catch (e: CameraAccessException) {
             e.printStackTrace()
         }
 
         handler = Handler(Looper.getMainLooper())
 
-        // Set up the seek bar for SOS speed selection (1 to 9)
         seekBarSpeed.max = 8
-        seekBarSpeed.progress = 0 // Default to speed factor 1
+        seekBarSpeed.progress = 0
         txtSpeed.text = "SOS Speed: 1"
 
         seekBarSpeed.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -67,13 +70,12 @@ class ActivitySos : AppCompatActivity() {
         }
     }
 
-    // Update the SOS pattern based on the selected speed factor
     private fun updateSosPattern() {
         val baseDelay = 200L
         sosPattern = longArrayOf(
-            baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor, // Short flashes
-            3 * baseDelay / sosSpeedFactor, 3 * baseDelay / sosSpeedFactor, 3 * baseDelay / sosSpeedFactor, // Long flashes
-            baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor // Short flashes
+            baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor, // Shrt.Flasher
+            3 * baseDelay / sosSpeedFactor, 3 * baseDelay / sosSpeedFactor, 3 * baseDelay / sosSpeedFactor, // Lng flashes
+            baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor, baseDelay / sosSpeedFactor // Shot flashes
         )
     }
 
@@ -93,15 +95,15 @@ class ActivitySos : AppCompatActivity() {
         override fun run() {
             if (index < sosPattern.size) {
                 val delay = sosPattern[index]
-                if (index % 2 == 0) { // Even index: Turn on flashlight
+                if (index % 2 == 0) {
                     turnOnFlashlight()
-                } else { // Odd index: Turn off flashlight
+                } else {
                     turnOffFlashlight()
                 }
                 index++
                 handler.postDelayed(this, delay)
             } else {
-                index = 0 // Restart the SOS pattern
+                index = 0
                 handler.post(this)
             }
         }

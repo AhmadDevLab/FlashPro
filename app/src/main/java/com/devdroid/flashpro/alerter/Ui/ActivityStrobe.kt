@@ -11,8 +11,11 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import com.devdroid.flashpro.alerter.R
+import com.devdroid.flashpro.alerter.databinding.ActivityStrobeBinding
 
 class ActivityStrobe : AppCompatActivity() {
+
+    private lateinit var binding: ActivityStrobeBinding
 
     private lateinit var cameraManager: CameraManager
     private lateinit var cameraId: String
@@ -25,18 +28,19 @@ class ActivityStrobe : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_strobe)
+        binding = ActivityStrobeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
         try {
-            cameraId = cameraManager.cameraIdList[0] // Get the first camera (usually rear camera)
+            cameraId = cameraManager.cameraIdList[0]
         } catch (e: CameraAccessException) {
             e.printStackTrace()
         }
 
-        toggleStrobe = findViewById(R.id.toggleStrobe)
-        seekBarFrequency = findViewById(R.id.seekBarFrequency)
-        textViewFrequency = findViewById(R.id.textViewFrequency)
+        toggleStrobe = binding.toggleStrobe
+        seekBarFrequency = binding.seekBarFrequency
+        textViewFrequency = binding.textViewFrequency
 
         strobeHandler = Handler(Looper.getMainLooper())
 
@@ -51,7 +55,7 @@ class ActivityStrobe : AppCompatActivity() {
         seekBarFrequency.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 textViewFrequency.text = "Frequency: $progress"
-                // Adjust the strobe rate if already active
+                // Adjust the S.R
                 if (toggleStrobe.isChecked) {
                     startStrobeLight()
                 }
@@ -63,7 +67,7 @@ class ActivityStrobe : AppCompatActivity() {
     }
 
     private fun startStrobeLight() {
-        val frequency = 100 - seekBarFrequency.progress // Convert to milliseconds
+        val frequency = 100 - seekBarFrequency.progress
         strobeRunnable = object : Runnable {
             override fun run() {
                 try {

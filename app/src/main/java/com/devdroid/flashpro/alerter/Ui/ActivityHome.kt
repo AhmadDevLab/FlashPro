@@ -30,8 +30,8 @@ class ActivityHome : AppCompatActivity() {
             startActivity(Intent(this@ActivityHome, ActivitySos::class.java))
         }
         binding.btnScreen.setOnClickListener(){
-            startActivity(Intent(this@ActivityHome, ActivityScreen::class.java))
-
+//            startActivity(Intent(this@ActivityHome, ActivityScreen::class.java))
+            Toast.makeText(this@ActivityHome, "Es ka abhi final decide ni kia ap log abhi esa na charain", Toast.LENGTH_SHORT).show()
         }
 
         cameraManager = getSystemService(CAMERA_SERVICE) as CameraManager

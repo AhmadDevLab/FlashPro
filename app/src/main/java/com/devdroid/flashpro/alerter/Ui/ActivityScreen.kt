@@ -18,7 +18,7 @@ class ActivityScreen : AppCompatActivity() {
 
         binding.apply {
 
-            // Adjust Brightness
+
             seekBarBrightness.max = 255
             seekBarBrightness.progress = getScreenBrightness()
 
@@ -32,15 +32,14 @@ class ActivityScreen : AppCompatActivity() {
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                    // Not needed
+
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    // Not needed
+
                 }
             })
 
-            // Color Change Listeners
             btnColorRed.setOnClickListener { setScreenColor("#FF0000") }
             btnColorGreen.setOnClickListener { setScreenColor("#00FF00") }
             btnColorBlue.setOnClickListener { setScreenColor("#0000FF") }
